@@ -1,0 +1,107 @@
+.clearfix:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float:right;
+}
+.l{
+	width: 200px;
+}
+.r{
+	width: 140px;
+	height: 50px;
+	margin-top:14px;
+}
+.login-box{
+	background:url(../images/bg.jpg) no-repeat;
+	background-size: cover;
+	position: relative;
+	background-size:100% 100%;
+	-moz-background-size:100% 100%;
+}
+.login-list{
+	width: 440px;
+	height: 410px;
+	background:#fff;
+	border-radius: 10px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-left: -250px;
+	margin-top:-250px;
+	overflow: hidden;
+}
+.login-head{
+	height: 60px;
+	background:#42bdf6;
+	text-align: center;
+	line-height: 60px;
+	font-size: 20px;
+	font-weight: bold;
+	color:#fff;
+}
+.login-con{
+	width: 380px;
+	margin:20px auto 0;
+}
+button:focus{
+    outline: none !important;
+}
+.verification{
+	width: 380px;
+}
+.btn{
+	margin-top: 40px;
+}
+#login-btn{
+	letter-spacing: 2px;
+}
+
+.login-con .form-group{
+	position: relative;
+}
+.login-con .form-group label.error{
+	position: absolute;
+	top:0;
+	right: 5px;
+	color:#f00;
+	background: url(../images/bg-warning.png)no-repeat left;
+	padding-left: 20px;
+}
+.login-con .form-group .l{
+	position: relative;
+}
+.login-con .form-group .l label.error{
+	position: absolute;
+	top:0;
+	right: 5px;
+	color:#f00;
+	background: url(../images/bg-warning.png)no-repeat left;
+	padding-left: 20px;
+}
+.login-con .form-control{
+	padding-left: 30px;
+}
+.login-con .form-group i{
+    position: absolute;
+    top: 34px;
+    left: 10px;
+    font-size: 17px;
+    color: #c8c8c8;
+    transition : all 0.5s ease 0s;
+}
+.login-con .form-control:focus + i{
+    color: #00b4ef;
+}
+#login-btn{
+	background: #42bdf6;
+	color:#fff;
+}

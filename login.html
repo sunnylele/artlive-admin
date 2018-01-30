@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>登录</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="assets/css-plugins/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/login.css" />
+	<link rel="stylesheet" href="assets/js-plugins/skin/default/layer.css" />
+</head>
+<body>
+	<div class="login-box">
+		<div class="login-list">
+			<div class="login-head">星语心愿后台管理系统</div>
+			<form class="login-con" id="login-user">
+				<div class="form-group">
+				    <label for="userName">用户名</label>
+				    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
+				    <i class="fa fa-user"></i>
+				</div>
+				<div class="form-group">
+				    <label for="password">密码</label>
+				    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+				    <i class="fa fa-lock"></i>
+				</div>
+				<div class="form-group verification clearfix">
+					<div class="l fl">
+						<label for="code_input">验证码</label>
+				    	<input type="text" class="form-control" id="code_input" name="code" placeholder="验证码">
+				    </div>
+				    <div class="r fr">
+				    	<div id="v_container" style="width:140px;height: 50px; float: right;"></div>
+				    </div>
+				</div>
+				<button type="submit" class="btn btn-lg btn-block" id="login-btn">登录</button>
+			</form>
+		</div>
+	</div>
+</body>
+<script src="assets/js-plugins/jquery.1.7.2.min.js"></script>
+<script src="assets/js-plugins/bootstrap.min.js"></script>
+<script src="assets/js-plugins/gVerify.js"></script>
+<script src="assets/js-plugins/jquery.validate.js"></script>
+<script src="assets/js-plugins/jquery.form.js"></script>
+<script src="assets/js-plugins/jquery.cookie.js"></script>
+<script src="assets/js-plugins/layer.js"></script>
+<script src="assets/js/util/route.js"></script>
+<script src="assets/js/util/ajax.js"></script>
+<script src="assets/js-plugins/aes/aes.js"></script>
+<script src="assets/js-plugins/aes/mode-ecb.js"></script>
+<script src="assets/js-plugins/aes/aes-admin.js"></script>
+<script src="assets/js/login.js"></script>
+</html>

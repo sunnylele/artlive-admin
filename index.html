@@ -1,0 +1,1048 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>星语心愿后台管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/css-plugins/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/css-plugins/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="assets/css/common.css" />
+		<link rel="stylesheet" href="assets/js-plugins/skin/default/layer.css" />
+		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="assets/js-plugins/jquery-2.0.3.min.js"></script>
+		<script src="assets/js-plugins/jquery.validate.js"></script>
+		<script src="assets/js-plugins/jquery.form.js"></script>
+		<script src="assets/js-plugins/layer.js"></script>
+		<script src="assets/js/data-list/index.js"></script>
+		<script src="assets/js/util/route.js"></script>
+		<script src="assets/js/util/ajax.js"></script>
+	</head>
+
+	<body>
+		<!-- 修改密码 -->
+		<div id="change-pass" class="modal" tabindex="-1">
+			<form id="changePassForm" class="form-horizontal formList" >
+				<div class="modal-dialog" style="width: 500px;margin:200px auto;">
+					<div class="modal-content">
+						<div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                    <h4 class="modal-title">
+		                        <i class="ace-icon fa fa-hand-o-right green"></i>
+		                        修改密码
+		                    </h4>
+		                </div>
+		                <div class="modal-body">
+							<div class="row">
+								<div class="col-sm-12 newError">
+	                                <label class="bolder">新密码</label>
+	                                <input type="password" name="newPass" id="newPass" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-sm-12 upward newError1">
+	                                <label class="bolder">确认密码</label>
+	                                <input name="newPassword" type="password" id="newPassword" class="col-sm-3 form-control">
+	                            </div>
+	                            <div class="col-xs-12" style="margin:20px 0px 0px 0px">
+	                               <input type="submit" value="确认" id="changeBtn" class="btn btn-primary col-sm-2" style="float: right">
+	                            </div>
+		                    </div>
+	                    </div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- 个人资料 -->
+		<div id="person-data" class="modal" tabindex="-1">
+			<div class="modal-dialog" style="width: 750px;margin:200px auto;">
+				<div class="modal-content">
+					<div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">
+	                        <i class="ace-icon fa fa-hand-o-right green"></i>
+	                        个人资料
+	                    </h4>
+	                </div>
+	                <div class="modal-body">
+						<div class="row">
+							<ul id="admin_mess">
+								<li>
+									<i>头像：</i>
+									<img src="" id="admin_photo">
+								</li>
+								<li>
+									<i>昵称：</i>
+									<span id="admin_nick"></span>
+								</li>
+								<li>
+									<i>姓名；</i>
+									<span id="admin_name"></span>
+								</li>
+								<li>
+									<i>电话：</i>
+									<span id="admin_tel"></span>
+								</li>
+								<li>
+									<i>邮箱：</i>
+									<span id="admin_emil"></span>
+								</li>
+								<li>
+									<i>地址：</i>
+									<span id="admin_adress"></span>
+								</li>
+								<li>
+									<i>简介：</i>
+									<span id="admin_intro"></span>
+								</li>
+								<li>
+									<i>我的角色：</i>
+									<div class="admin_roleBox">
+									</div>
+								</li>
+								<li>
+									<i>我的权限：</i>
+									<div class="admin_authBox">
+									</div>
+								</li>
+							</ul>
+	                    </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="index.html" class="navbar-brand">
+						<img src="assets/images/logo.png" height="35" style="margin-top: 5px;" >
+						<img src="assets/images/use.png" height="28" style="margin-top: 5px;" >
+					</a>
+				</div>
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" id="picSrc" src="" alt="Jason's Photo" />
+								<span class="user-info">
+									<small id="master"></small>
+									<span id="roleMess"></span>
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+								<li id="personalData">
+									<a href="#">
+										<i class="icon-user"></i>
+										个人资料
+									</a>
+								</li>
+
+								<li id="changePass">
+									<a href="#">
+										<i class="icon-user"></i>
+										修改密码
+									</a>
+								</li>
+
+								<li id="login_back">
+									<a href="javascript:;">
+										<i class="icon-off"></i>
+										退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<ul class="nav nav-list">
+						<li class="active open">
+							<a href="index.html" class="dropdown-toggle">
+								<i class="icon-home"></i>
+								<span class="menu-text">首页</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<!-- <ul class="submenu">
+								<li class="active">
+									<a href="index.html">
+										<i class="icon-double-angle-right"></i>
+										会计注册数量统计
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										直播课程统计
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										充值总额
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										订单总额
+									</a>
+								</li>
+
+								<li>
+									<a href="javascript:;">
+										<i class="icon-double-angle-right"></i>
+										打赏金额统计
+									</a>
+								</li>
+							</ul> -->
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+								<span class="menu-text"> 用户管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/management/manager.html">
+										<i class="icon-double-angle-right"></i>
+										管理员管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/management/role.html">
+										<i class="icon-double-angle-right"></i>
+										角色管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/management/auth.html">
+										<i class="icon-double-angle-right"></i>
+										权限管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/management/student.html">
+										<i class="icon-double-angle-right"></i>
+										学生管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/management/teacher.html">
+										<i class="icon-double-angle-right"></i>
+										老师管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/management/integral.html">
+										<i class="icon-double-angle-right"></i>
+										积分管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-calendar"></i>
+								<span class="menu-text"> 预约课程管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/course/course.html">
+										<i class="icon-double-angle-right"></i>
+										预约课程管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-facetime-video"></i>
+								<span class="menu-text"> 直播课程管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/live/live.html">
+										<i class="icon-double-angle-right"></i>
+										直播课程管理
+									</a>
+								</li>
+								<li>
+									<a href="public/live/homework.html">
+										<i class="icon-double-angle-right"></i>
+										布置作业信息
+									</a>
+								</li>
+								<li>
+									<a href="public/live/gift.html">
+										<i class="icon-double-angle-right"></i>
+										礼物管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-leaf"></i>
+								<span class="menu-text">艺考圈管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/art/art.html">
+										<i class="icon-double-angle-right"></i>
+										艺考圈管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-book"></i>
+								<span class="menu-text"> 学生作业管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/work/work.html">
+										<i class="icon-double-angle-right"></i>
+										学生作业信息
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-list-alt"></i>
+								<span class="menu-text"> 订单管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+
+								<li>
+									<a href="public/order/order.html">
+										<i class="icon-double-angle-right"></i>
+										订单管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/order/refund.html">
+										<i class="icon-double-angle-right"></i>
+										退款管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/order/bean.html">
+										<i class="icon-double-angle-right"></i>
+										星豆充值价格表
+									</a>
+								</li>
+
+								<li>
+									<a href="public/order/bean-recharge.html">
+										<i class="icon-double-angle-right"></i>
+										星豆充值记录
+									</a>
+								</li>
+
+								<li>
+									<a href="public/order/bean-consume.html">
+										<i class="icon-double-angle-right"></i>
+										星豆消费记录
+									</a>
+								</li>
+
+								<li>
+									<a href="public/order/cash-consume.html">
+										<i class="icon-double-angle-right"></i>
+										现金消费记录
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-comments"></i>
+								<span class="menu-text"> 消息管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/news/news.html">
+										<i class="icon-double-angle-right"></i>
+										系统消息
+									</a>
+								</li>
+							</ul>
+						</li>
+
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 网站管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+
+								<li>
+									<a href="public/website/adv.html">
+										<i class="icon-double-angle-right"></i>
+										广告位管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/website/feedback.html">
+										<i class="icon-double-angle-right"></i>
+										意见反馈
+									</a>
+								</li>
+
+								<li>
+									<a href="public/website/report.html">
+										<i class="icon-double-angle-right"></i>
+										举报管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cog"></i>
+								<span class="menu-text"> 系统管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/system/ceping.html">
+										<i class="icon-double-angle-right"></i>
+										空乘测评
+									</a>
+								</li>
+
+								<li>
+									<a href="public/system/colleges.html">
+										<i class="icon-double-angle-right"></i>
+										学校管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/system/major.html">
+										<i class="icon-double-angle-right"></i>
+										课程管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/system/coach.html">
+										<i class="icon-double-angle-right"></i>
+										老师辅导费用
+									</a>
+								</li>
+
+								<li>
+									<a href="public/system/dictionary.html">
+										<i class="icon-double-angle-right"></i>
+										词典配置
+									</a>
+								</li>
+
+								<li>
+									<a href="public/system/log.html">
+										<i class="icon-double-angle-right"></i>
+										系统日志
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-folder-open"></i>
+								<span class="menu-text"> 底部菜单管理 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="public/foot-menu/foot-menu.html">
+										<i class="icon-double-angle-right"></i>
+										底部菜单管理
+									</a>
+								</li>
+
+								<li>
+									<a href="public/foot-menu/about.html">
+										<i class="icon-double-angle-right"></i>
+										关于我们
+									</a>
+								</li>
+
+								<li>
+									<a href="public/foot-menu/help.html">
+										<i class="icon-double-angle-right"></i>
+										帮助信息
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="index.html">首页</a>
+							</li>
+							<li class="active">控制台</li>
+						</ul>
+					</div>
+					<div class="home_main">
+						<div class="home_Box">
+							<div class="listNum registerUser">
+								<ul>
+									<li>
+										<div class="top">
+											注册会员量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											入驻老师量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum liveCourse">
+								<ul>
+									<li>
+										<div class="top">
+											直播课程销售总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											直播课程订单量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum tiyanCourse">
+								<ul>
+									<li>
+										<div class="top">
+											体验课程销售总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											体验课程订单量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum homeWork">
+								<ul>
+									<li>
+										<div class="top">
+											提交作业销售总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											提交作业量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum peekWork">
+								<ul>
+									<li>
+										<div class="top">
+											偷看作业销售总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											偷看作业量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum recharge">
+								<ul>
+									<li>
+										<div class="top">
+											充值总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											充值量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+							<div class="listNum reward">
+								<ul>
+									<li>
+										<div class="top">
+											打赏总额
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+									<li>
+										<div class="top">
+											打赏量
+										</div>
+										<div class="day">
+											<b>888</b>
+											日
+										</div>
+										<!-- <div class="week">
+											<p>
+												<span>88</span>
+												周
+											</p>
+											<p class="borderNone">
+												<span>88</span>
+												月
+											</p>
+										</div> -->
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="count_box">
+							<ul>
+								<li>
+									<h3>用户</h3>
+									<div class="htmlList">
+										<p>
+											<a href="public/management/student.html">待审核人数</a>
+											<span>103</span>
+										</p>
+										<p>
+											<a href="public/management/student.html">学生管理</a>
+										</p>
+										<p>
+											<a href="public/management/teacher.html">老师管理</a>
+										</p>
+										<p>
+											<a href="public/system/coach.html">辅导价格管理</a>
+										</p>
+										<p>
+											<a href="public/system/major.html">专业标签管理</a>
+										</p>
+									</div>
+								</li>
+								<li>
+									<h3>课程</h3>
+									<div class="htmlList">
+										<p>
+											<a href="public/course/course.html">预约课程管理</a>
+										</p>
+										<p>
+											<a href="public/live/live.html">直播课程管理</a>
+										</p>
+										<p>
+											<a href="public/live/gift.html">礼物列表</a>
+										</p>
+										<p>
+											<a href="public/live/homework.html">布置作业</a>
+										</p>
+									</div>
+								</li>
+								<li>
+									<h3>作业、宝典管理</h3>
+									<div class="htmlList">
+										<p>
+											<a href="public/art/art.html">艺考圈</a>
+										</p>
+										<p>
+											<a href="public/work/work.html">学生作业</a>
+										</p>
+									</div>
+								</li>
+								<li>
+									<h3>订单管理</h3>
+									<div class="htmlList">
+										<p>
+											<a href="public/order/order.html">订单管理</a>
+										</p>
+										<p>
+											<a href="public/order/bean.html">星豆充值价格表</a>
+										</p>
+										<p>
+											<a href="public/order/bean-recharge.html">星豆充值记录表</a>
+										</p>
+										<p>
+											<a href="public/order/bean-consume.html">星豆消费记录表</a>
+										</p>
+										<p>
+											<a href="public/order/cash-consume.html">现金消费记录表</a>
+										</p>
+									</div>
+								</li>
+								<li>
+									<h3>快捷入口</h3>
+									<div class="htmlList quick clearfix" style="margin-left: 0;">
+										<p>
+											<a href="public/management/manager.html">管理员列表</a>
+										</p>
+										<p>
+											<a href="public/management/role.html">角色列表</a>
+										</p>
+										<p>
+											<a href="public/management/auth.html">权限列表</a>
+										</p>
+										<p>
+											<a href="public/management/integral.html">积分列表</a>
+										</p>
+										<p>
+											<a href="public/news/news.html">系统消息</a>
+										</p>
+										<p>
+											<a href="public/website/feedback.html">意见反馈</a>
+										</p>
+										<p>
+											<a href="public/website/report.html">举报管理</a>
+										</p>
+										<p>
+											<a href="public/system/dictionary.html">词典配置</a>
+										</p>
+										<p>
+											<a href="public/foot-menu/foot-menu.html">底部菜单</a>
+										</p>
+										<p>
+											<a href="public/foot-menu/about.html">关于我们</a>
+										</p>
+										<p>
+											<a href="public/foot-menu/help.html">帮助信息</a>
+										</p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div>
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js-plugins/jquery-2.0.3.min.js'>"+"<"+"script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js-plugins/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="assets/js-plugins/bootstrap.min.js"></script>
+		<script src="assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="assets/js-plugins/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="assets/js-plugins/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js-plugins/jquery.slimscroll.min.js"></script>
+		<script src="assets/js-plugins/jquery.easy-pie-chart.min.js"></script>
+		<script src="assets/js-plugins/jquery.sparkline.min.js"></script>
+		<script src="assets/js/flot/jquery.flot.min.js"></script>
+		<script src="assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+</body>
+</html>
+
